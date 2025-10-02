@@ -9,6 +9,7 @@ type User{
  firstName:String
  lastName:String
  email:String
+ phone:String
  address:String
  
  
@@ -23,7 +24,7 @@ type Query{
 type Mutation{
  
 login(email:String!,password:String!):String! #JWT TOKEN
-registration(firstName:String!,lastName:String!,email:String!,address:String!,password:String!):String!
+registration(firstName:String!,lastName:String!,email:String!,address:String!,password:String!,phone:String!):String!
 
 }
 

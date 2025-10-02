@@ -11,7 +11,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 
 
-export const registrationMutation =  async (_, { firstName, lastName, email, address, password }) => {
+export const registrationMutation =  async (_, { firstName, lastName, email, address, password,phone }) => {
 
 
       if(!checkEmail(email)) throw new Error("Invalid email format"); 
@@ -31,12 +31,17 @@ export const registrationMutation =  async (_, { firstName, lastName, email, add
       if (password.length < 6) {
         throw new Error("Password must be at least 6 characters long");
       }
+      const bdPhoneRegex = /^(?:\+8801|01)[3-9]\d{8}$/;
+      if (!bdPhoneRegex.test(phone)) {
+        throw new Error("Invalid Bangladeshi phone number");
+      }
+
     
        try {
       const hashedPassword = await bcrypt.hash(password, 10);
 
       const user = await prisma.user.create({
-        data: { firstName, lastName, address, email, password: hashedPassword },
+        data: { firstName, lastName, address, email, password: hashedPassword,phone },
       });
 
       console.log("Registration INSIDE")

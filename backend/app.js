@@ -16,10 +16,8 @@ async function startServer() {
     context: ({ req }) => {
       const token = req.headers.authorization || "";
       const user = getUserFromToken(token);
-      console.log("here");
-      console.log(user);
-      console.log("shesh");
-      return { user }; 
+    
+      return  user ; 
     },
   });
 
