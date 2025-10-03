@@ -1,4 +1,5 @@
 import { AuthenticationError } from "../../../utils/AuthenticationError.js"
+import { DatabaseError } from "../../../utils/DatabaseError.js"
 
 
 export const getAllProducts = async (parent,args,{prisma,user})=>{
@@ -13,7 +14,7 @@ export const getAllProducts = async (parent,args,{prisma,user})=>{
         
         return products 
       } catch (error) {
-        throw new Error("Error communicating with DB")
+        throw new DatabaseError()
       }
 
 

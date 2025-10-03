@@ -16,7 +16,6 @@ async function startServer() {
     context: async ({ req }) => {
       const token = req.headers.authorization || "";
       const user = await getUserFromToken(token);
-   //   console.log(user)
       return  {prisma,user} ; 
     },
   });
@@ -26,11 +25,10 @@ async function startServer() {
   const app = express();
   app.use(cors());
 
-  // Use applyMiddleware for Apollo Server v3
   server.applyMiddleware({ app });
 
   app.listen(4000, () => {
-    console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
+    console.log(`Server ready at http://localhost:4000${server.graphqlPath}`);
   });
 }
 

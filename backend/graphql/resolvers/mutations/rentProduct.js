@@ -3,13 +3,21 @@ import { AuthenticationError } from "../../../utils/AuthenticationError.js"
 
 export const rentProductAsUser = async (parent, { id, startDate, endDate }, { prisma, user }) => {
      try {
+
         if (!user) throw new  AuthenticationError();
+
       const product = await prisma.product.findUnique({ where: { id } });
+
       if (!product) throw new Error('Product not found');
+
       if (!product.availableForRent) throw new Error('Not available for rent');
+
       if (product.ownerId === user.id) throw new Error('Cannot rent your own product');
+
       const start = new Date(startDate);
+
       const end = new Date(endDate);
+      
       if (start >= end) throw new Error('Invalid dates');
      
       const overlapping = await prisma.rental.findMany({
@@ -36,6 +44,7 @@ export const rentProductAsUser = async (parent, { id, startDate, endDate }, { pr
       return rental 
       
      } catch (error) {
+
       throw error
       
      }  
