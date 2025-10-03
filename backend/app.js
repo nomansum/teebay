@@ -2,12 +2,14 @@ const express = require("express");
 const {ApolloServer} = require('apollo-server-express')
 const bodyParser = require("body-parser");
 const cors = require("cors");
-
+const  { PrismaClient } =require ('@prisma/client');
  
  const typeDefs = require('./graphql/typeDefs/typeDefs.js')
  const resolvers = require('./graphql/resolvers/resolvers.js')
 
  const {getUserFromToken} = require('./utils/auth.js')
+ 
+ const prisma = new PrismaClient();
 
 async function startServer() {
   const server = new ApolloServer({
@@ -16,8 +18,8 @@ async function startServer() {
     context: ({ req }) => {
       const token = req.headers.authorization || "";
       const user = getUserFromToken(token);
-    
-      return  user ; 
+      console.log(user)
+      return  {prisma,user} ; 
     },
   });
 

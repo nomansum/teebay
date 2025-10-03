@@ -4,12 +4,11 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import {checkEmail} from '../../../utils/auth.js'
 
-const prisma = new PrismaClient();
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
 
-export const loginMutation = async(_,{email,password})=>{
+export const loginMutation = async(_,{email,password},{prisma,user})=>{
 
               if(!checkEmail(email)) throw new Error("Invalid email format"); 
      
