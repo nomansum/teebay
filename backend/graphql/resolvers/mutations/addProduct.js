@@ -1,9 +1,11 @@
+import { AuthenticationError } from "../../../utils/AuthenticationError.js"
 
+import { DatabaseError } from "../../../utils/DatabaseError.js";
 
 
 export const addProductToUser = async (parent,args,{prisma,user}) =>{
      
-         if(!user) throw new Error("Not Authenticated!")
+         if(!user) throw new AuthenticationError();
 
         try {
             
@@ -14,7 +16,7 @@ export const addProductToUser = async (parent,args,{prisma,user}) =>{
             return data
 
         } catch (error) {
-              throw new Error("Something wrong while communicating with DB")
+              throw new DatabaseError()
     
         }    
 

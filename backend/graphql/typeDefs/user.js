@@ -1,8 +1,7 @@
 
 
-const {gql} = require('apollo-server-express');
-
-const userTypeDefs = gql`
+import { gql } from "apollo-server-express";
+export const userTypeDefs = gql`
 
 type User{
  id:Int!
@@ -29,5 +28,3 @@ registration(firstName:String!,lastName:String!,email:String!,address:String!,pa
 }
 
 `;
-
-module.exports = userTypeDefs;

@@ -1,11 +1,7 @@
 
-const {PrismaClient}  = require('@prisma/client')
-const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
-const {checkEmail} = require('../../utils/auth.js');
-const { registrationMutation } = require('./mutations/registration.js');
-const { loginMutation } = require('./mutations/login.js');
-const { meQuery } = require('./Query/me.js');
+import { registrationMutation } from './mutations/registration.js';
+import  { loginMutation } from './mutations/login.js';
+import { meQuery } from './Query/me.js';
 
 
 const resolvers = {
@@ -25,4 +21,4 @@ const resolvers = {
 }
 
 
-module.exports = resolvers
+export default resolvers

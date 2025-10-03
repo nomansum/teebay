@@ -1,9 +1,8 @@
 
-import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import {checkEmail} from '../../../utils/auth.js'
-
+import { DatabaseError } from '../../../utils/DatabaseError.js';
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -26,7 +25,7 @@ export const loginMutation = async(_,{email,password},{prisma,user})=>{
         return token
 
         } catch (error) {
-            throw new Error("Something happend with db")
+            throw new DatabaseError()
         }
 
 

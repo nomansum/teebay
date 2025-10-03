@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import {checkEmail} from '../../../utils/auth.js'
-
+import { DatabaseError } from '../../../utils/DatabaseError.js';
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -45,7 +45,7 @@ export const registrationMutation =  async (_, { firstName, lastName, email, add
 
       return token;
        } catch (error) {
-        throw new Error("Something happended while interacting with the database")
+         throw new DatabaseError()
        }
      
     }

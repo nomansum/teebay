@@ -1,8 +1,11 @@
+import { AuthenticationError } from "../../../utils/AuthenticationError.js"
+import { DatabaseError } from "../../../utils/DatabaseError.js"
+
 
 
 export const editProductOfUser = async (parent,{id,...updates},{prisma,user})=>{
     
-        if(!user) throw new Error("Not Authenticated!")
+        if(!user) throw new AuthenticationError()
         
         try {
              const product = await prisma.product.findUnique({where:{id}})  
@@ -20,9 +23,8 @@ export const editProductOfUser = async (parent,{id,...updates},{prisma,user})=>{
 
         } catch (error) {
         
-            throw new Error("Something wrong while communicating with DB")
+            throw new DatabaseError()
 
         }
 
     }
-    

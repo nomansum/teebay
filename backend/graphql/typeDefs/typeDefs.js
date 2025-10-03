@@ -1,7 +1,8 @@
-const { mergeTypeDefs } = require('@graphql-tools/merge');
-const userTypeDefs = require('./user.js');
-const productTypeDef = require('./product.js')
+
+import { mergeTypeDefs } from '@graphql-tools/merge';
+import {userTypeDefs} from './user.js'
+import productTypeDef from './product.js'
 
 const typeDefs = mergeTypeDefs([userTypeDefs, productTypeDef]);
 
-module.exports = typeDefs;
+export default typeDefs

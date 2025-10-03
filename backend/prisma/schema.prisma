@@ -18,6 +18,9 @@ email String @unique
 password String
 phone String
 Products Product[]
+purchasesAsBuyer Purchase[] @relation("buyer")
+purchasesAsSeller Purchase[] @relation("seller")
+rentalsAsRenter Rental[] @relation("renter")
 
 }
 
@@ -32,7 +35,35 @@ model Product{
   pricingType PricingType?
   ownerId Int
   owner User @relation(fields: [ownerId],references: [id])
+  availableForBuy Boolean @default(true)
+  availableForRent Boolean @default(true)
+  purchases         Purchase[]
+  rentals           Rental[]
 
+}
+
+model Purchase{
+  
+  id Int @id @default(autoincrement())
+  product Product @relation(fields: [productId],references: [id])
+
+  productId Int
+  seller User @relation("seller",fields: [sellerId],references: [id])
+  sellerId Int
+  buyer User @relation("buyer",fields: [buyerId],references: [id])
+  buyerId Int 
+  date DateTime @default(now())
+
+}
+
+model Rental {
+  id        Int      @id @default(autoincrement())
+  product   Product  @relation(fields: [productId], references: [id])
+  productId Int
+  renter    User     @relation("renter", fields: [renterId], references: [id])
+  renterId  Int
+  startDate DateTime
+  endDate   DateTime
 }
 
 
