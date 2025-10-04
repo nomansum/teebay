@@ -14,6 +14,7 @@ async function startServer() {
     typeDefs,
     resolvers,
     context: async ({ req }) => {
+     
       const token = req.headers.authorization || "";
       const user = await getUserFromToken(token);
       return  {prisma,user} ; 

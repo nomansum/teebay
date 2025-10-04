@@ -40,7 +40,7 @@ export const registrationMutation =  async (_, { firstName, lastName, email, add
         data: { firstName, lastName, address, email, password: hashedPassword,phone },
       });
 
-      console.log("Registration INSIDE")
+      //console.log("Registration INSIDE")
       const token = jwt.sign({ id: user.id, email:user.email }, JWT_SECRET);
 
       return token;
