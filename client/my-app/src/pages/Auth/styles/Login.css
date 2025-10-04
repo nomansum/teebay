@@ -1,0 +1,87 @@
+/* Full-page container */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #f5f9fc;
+  margin: 0;
+  padding: 0;
+}
+
+/* Card */
+.login-card {
+  max-width: 400px;
+  width: 100%;
+  padding: 2rem;
+  border: 1px solid #e0e6ed;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  text-align: center; /* center content */
+}
+
+/* Title */
+.login-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  color: #2d3748;
+  text-align: center;
+}
+
+/* Form layout */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  width: 100%;
+}
+
+/* Inputs */
+.login-input input {
+  background-color: #fff !important; /* white fields */
+  border: 1px solid #d0d5dd !important;
+  border-radius: 6px;
+  height: 42px;
+  font-size: 0.9rem;
+  padding: 0 0.8rem;
+}
+
+/* Password eye icon */
+.mantine-PasswordInput-visibilityToggle {
+  color: #aaa !important; /* lighter gray */
+}
+.mantine-PasswordInput-visibilityToggle:hover {
+  color: #555 !important;
+}
+
+/* Button */
+.login-btn {
+  margin-top: 0.5rem;
+  background-color: #7b00ff !important;
+  color: white !important;
+  font-weight: 600;
+  border-radius: 6px;
+}
+.login-btn:hover {
+  background-color: #5c00c7 !important;
+}
+
+/* Footer */
+.login-footer {
+  font-size: 0.85rem;
+  margin-top: 1rem;
+  color: #444;
+  text-align: center;
+}
+
+.signup-link {
+  font-weight: 500;
+  color: #0066ff;
+  text-decoration: none;
+}
+.signup-link:hover {
+  text-decoration: underline;
+}
