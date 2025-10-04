@@ -70,8 +70,6 @@ type Mutation{
 
 }
 
-
 `
-
 
 export default productTypeDef

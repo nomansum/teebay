@@ -4,7 +4,6 @@ import Login from '../pages/Auth/Login';
 import Register from '../pages/Auth/Register';
 import Dashboard from '../pages/Auth/Dashboard';
 
-
 const AppRouter = () => {
   return (
     
@@ -12,9 +11,10 @@ const AppRouter = () => {
          
          <Routes>
             
-            <Route path='/login' element={<Login />}></Route>
+            <Route path='/' element={<Login />}></Route>
             <Route path='/register' element={<Register />}></Route>
-             <Route path='/' element={<Dashboard />}></Route>
+            <Route path='/dashboard' element={<Dashboard />}></Route>
+           
          </Routes>
 
         </BrowserRouter>
