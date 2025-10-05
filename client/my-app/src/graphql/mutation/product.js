@@ -64,3 +64,20 @@ export const DELETE_PRODUCT = gql`
     deleteProduct(id: $id)
   }
 `;
+
+
+export const BUY_PRODUCT = gql`
+  mutation BuyProduct($id: Int!) {
+    buyProduct(id: $id) {
+      id
+    }
+  }
+`;
+
+export const RENT_PRODUCT = gql`
+  mutation RentProduct($id: Int!, $startDate: String!, $endDate: String!) {
+    rentProduct(id: $id, startDate: $startDate, endDate: $endDate) {
+      id
+    }
+  }
+`;
