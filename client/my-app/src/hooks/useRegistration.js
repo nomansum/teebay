@@ -6,7 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { REGISTER } from '../graphql/mutation/authMutations';
 import { validateRegister } from '../utils/validators';
-
+import Messages from '../constants/messages';
+import { ErrorNotification } from '../utils/errorNotification';
+import { SuccessNotification } from '../utils/successNotification';
  const useRegistration = () =>{
      
    const {token, setToken } = useContext(AuthContext);
@@ -38,13 +40,13 @@ const [mutationFunction,{loading}]  = useMutation(REGISTER);
 
       setToken(token);
       
-      showNotification({ message: 'Registration successful', color: 'green' });
+      SuccessNotification(Messages.SUCCESS.SIGNUP);
 
       setTimeout(() => navigate('/dashboard'), 100); 
 
       navigate('/dashboard');
     } catch (error) {
-      showNotification({ title: 'Error', message: error.message, color: 'red' });
+     ErrorNotification(error.message);
     }
   };
  

@@ -1,11 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { Button, Group, Stack, Paper, Title as MantineTitle, TextInput, Textarea, MultiSelect, NumberInput,Select } from '@mantine/core';
-import { showNotification } from '@mantine/notifications';
 import { useMutation } from '@apollo/client/react';
 import { useNavigate } from 'react-router-dom';
 import { ADD_PRODUCT } from '../../graphql/mutation/product';
 import { AuthContext } from '../../context/AuthContext';
 import { MY_PRODUCTS } from '../../graphql/query/product';
+import { ErrorNotification } from '../../utils/errorNotification';
+import { SuccessNotification } from '../../utils/successNotification';
+import Messages from '../../constants/messages';
+
 const AddProduct = () => {
    
   const{token} = useContext(AuthContext)  
@@ -33,11 +36,11 @@ const AddProduct = () => {
 
   const handleNext = () => {
     if (page === 0 && !formData.title) {
-      showNotification({ message: 'Product title is required', color: 'red' });
+      ErrorNotification('Product title is required');
       return;
     }
     if (page === 1 && formData.categories.length === 0) {
-      showNotification({ message: 'At least one category is required', color: 'red' });
+      ErrorNotification('At least one category is required');
       return;
     }
     setPage((prev) => Math.min(prev + 1, 2));
@@ -48,10 +51,10 @@ const AddProduct = () => {
   const handleSubmit = async () => {
     try {
       await addProduct({ variables: { ...formData, categories: formData.categories || [] } });
-      showNotification({ message: 'Product added', color: 'green' });
+       SuccessNotification(Messages.PRODUCT.ADDED_SUCESS);
       navigate('/'); 
     } catch (error) {
-      showNotification({ message: error.message, color: 'red' });
+      ErrorNotification(error.message);
     }
   };
 

@@ -18,9 +18,9 @@ const ProductCard = ({ product, onEdit, onDelete, onView }) => {
         <Text size="sm">Rent: ${product.price} per {product.pricingType}</Text>
       </Group>
       <Group position="right" mt="md">
-        <Button variant="light" color="blue" size="xs" onClick={onView}>View</Button>
-        <Button variant="light" color="green" size="xs" onClick={onEdit}>Edit</Button>
-        <Button variant="light" color="red" size="xs" onClick={onDelete}>Delete</Button>
+      {onView && (  <Button variant="light" color="blue" size="xs" onClick={onView}>View</Button>)}
+        {onEdit && (<Button variant="light" color="green" size="xs" onClick={onEdit}>Edit</Button>) }
+        {onDelete && (<Button variant="light" color="red" size="xs" onClick={onDelete}>Delete</Button>)}
       </Group>
     </Card>
   );

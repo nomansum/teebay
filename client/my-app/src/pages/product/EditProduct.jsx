@@ -2,10 +2,12 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Button, Group, Stack, Paper, Title as MantineTitle, TextInput, Textarea, MultiSelect, NumberInput, Select } from '@mantine/core';
 import { useMutation, useQuery } from '@apollo/client/react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { showNotification } from '@mantine/notifications';
 import { EDIT_PRODUCT } from '../../graphql/mutation/product';
 import { MY_PRODUCTS } from '../../graphql/query/product';
 import { AuthContext } from '../../context/AuthContext';
+import { ErrorNotification } from '../../utils/errorNotification';
+import Messages from '../../constants/messages';
+import { SuccessNotification } from '../../utils/successNotification';
 
 const EditProduct = () => {
   const { id } = useParams();
@@ -48,25 +50,25 @@ const EditProduct = () => {
 
   if (loading) return <p>Loading...</p>;
   if (error) {
-    showNotification({ message: error.message, color: 'red' });
+    ErrorNotification(error.message)
     return <p>Error :(</p>;
   }
 
   const handleSubmit = async () => {
     if (!formData.title) {
-      showNotification({ message: 'Product title is required', color: 'red' });
+     ErrorNotification(Messages.ERROR.PRODUCT_TITLE);
       return;
     }
     if (formData.categories.length === 0) {
-      showNotification({ message: 'At least one category is required', color: 'red' });
+      ErrorNotification(Messages.ERROR.CATEGORY);
       return;
     }
     try {
       await editProduct({ variables: { id: parseInt(id), ...formData, categories: formData.categories || [] } });
-      showNotification({ message: 'Product updated', color: 'green' });
+      SuccessNotification('Product updated');
       navigate('/');
     } catch (error) {
-      showNotification({ message: error.message, color: 'red' });
+      ErrorNotification(error.message)
     }
   };
 

@@ -1,10 +1,12 @@
-import { showNotification } from '@mantine/notifications';
 import { useForm } from '@mantine/form';
 import { useMutation } from "@apollo/client/react";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { LOGIN } from '../graphql/mutation/authMutations';
+import { ErrorNotification } from '../utils/errorNotification';
+import { SuccessNotification } from '../utils/successNotification';
+import Messages from '../constants/messages';
 
  const useLogin = () =>{
    const {token, setToken } = useContext(AuthContext);
@@ -34,10 +36,10 @@ const [mutationFunction,{loading}]  = useMutation(LOGIN);
       const token = data.login;
       setToken(token);
       
-      showNotification({ message: 'Login successful', color: 'green' });
+      SuccessNotification(Messages.SUCCESS.LOGIN)
       navigate('/dashboard');
     } catch (error) {
-      showNotification({ title: 'Error', message: error.message, color: 'red' });
+      ErrorNotification( error.message);
     }
   };
  

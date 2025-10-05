@@ -7,6 +7,10 @@ import MyProducts from '../pages/product/MyProducts';
 import EditProduct from '../pages/product/EditProduct';
 import AddProduct from '../pages/product/AddProduct';
 import ProductDetail from '../pages/product/ProductDetails';
+import BorrowedProducts from '../pages/product/BorrowedProducts';
+import SoldProducts from '../pages/product/SoldProducts';
+import LentProducts from '../pages/product/LentProducts';
+import AllProducts from '../pages/product/AllProducts';
 
 
 const AppRouter = () => {
