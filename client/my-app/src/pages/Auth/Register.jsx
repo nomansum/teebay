@@ -1,23 +1,11 @@
-import React from "react";
 import { TextInput, PasswordInput, Button, Paper, Anchor, Stack, Group, Text } from '@mantine/core';
-import { REGISTER } from "../../graphql/mutation/authMutations";
-import { AuthContext } from "../../context/AuthContext";
-import { validateRegister } from "../../utils/validators";
-import { useAuthForm } from "../../hooks/userAuthForm";
+
+
+import useRegistration from "../../hooks/useRegistration";
 
 const Register = () => {
-const { form, handleSubmit, loading } = useAuthForm({
-  mutation: REGISTER,
-  initialValues: { 
-    firstName: '', lastName: '', address: '', 
-    email: '', phone: '', password: '', confirmPassword: '' 
-  },
-  validate: validateRegister,
-  transformValues: (values) => {
-    const { confirmPassword, ...input } = values;
-    return input; 
-  },
-});
+
+const {form,handleSubmit,loading} = useRegistration();
 
   return (
     <Paper shadow="md" p="xl" withBorder style={{ maxWidth: 400, margin: 'auto' }}>

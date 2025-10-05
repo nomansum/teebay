@@ -1,19 +1,10 @@
-import React from 'react';
 import { TextInput, PasswordInput, Button, Paper, Anchor, Stack, Group, Text } from '@mantine/core';
-import { LOGIN } from '../../graphql/mutation/authMutations';
-import { AuthContext } from '../../context/AuthContext';
-import { useAuthForm } from '../../hooks/userAuthForm';
+
+import useLogin from '../../hooks/useLogin';
 
 const Login = () => {
 
-  const {form,handleSubmit,loading} = useAuthForm({
-    mutation: LOGIN,
-  initialValues: { email: "", password: "" },
-  validate: {
-    email: (v) => (v ? null : "Required"),
-    password: (v) => (v ? null : "Required"),
-  },
-  })
+  const {form,handleSubmit,loading} = useLogin()
     
 
   return (
@@ -59,92 +50,6 @@ export default Login;
 
 
 
-
-
-
-
-// import React, { useContext } from 'react';
-// import {
-//   Container,
-//   Card,
-//   TextInput,
-//   Group,
-//   Button,
-//   PasswordInput,
-//   Title,
-//   Text,
-//   Anchor,
-// } from '@mantine/core';
-// import { useForm } from '@mantine/form';
-// import { showNotification } from '@mantine/notifications';
-// import { useMutation } from '@apollo/client';
-// import { useNavigate } from 'react-router-dom';
-// import { LOGIN } from '../../graphql/mutation/authMutations';
-// import { AuthContext } from '../../context/AuthContext';
-
-// const Login = () => {
-//   const { setToken } = useContext(AuthContext);
-//   const [login, { loading }] = useMutation(LOGIN);
-//   const navigate = useNavigate();
-
-//   const loginForm = useForm({
-//     initialValues: { email: '', password: '' },
-//     validate: {
-//       email: (value) => (value ? null : 'Required'),
-//       password: (value) => (value ? null : 'Required'),
-//     },
-//   });
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     try {
-//       const { data } = await login({ variables: loginForm.values });
-//       setToken(data.login);
-//       showNotification({ message: 'Login successful', color: 'green' });
-//       navigate('/dashboard');
-//     } catch (error) {
-//       showNotification({ title: 'Error', message: error.message, color: 'red' });
-//     }
-//   };
-
-//   return (
-//     <Container style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-//       <Card shadow="sm" padding="lg" withBorder style={{ width: 400 }}>
-//         <Title align="center" order={2}>
-//           SIGN IN
-//         </Title>
-//         <form onSubmit={handleSubmit}>
-//           <TextInput
-//             mt={30}
-//             required
-//             placeholder="Email"
-//             {...loginForm.getInputProps('email')}
-//           />
-//           <PasswordInput
-//             mt={15}
-//             required
-//             placeholder="Password"
-//             {...loginForm.getInputProps('password')}
-//           />
-//           <Group position="center" mt="xl">
-//             <Button type="submit" color="violet" loading={loading}>
-//               LOGIN
-//             </Button>
-//           </Group>
-//         </form>
-
-//         <Text align="center" mt="md">
-//           Don't have an account?{' '}
-//           <Anchor href="/auth/registration" fz="md" fw="bold">
-//             Signup
-//           </Anchor>
-//         </Text>
-//       </Card>
-//     </Container>
-//   );
-// };
-
-// export default Login;
 
 
 
