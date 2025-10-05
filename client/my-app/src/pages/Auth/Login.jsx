@@ -26,7 +26,7 @@ const Login = () => {
           <Button type="submit" fullWidth mt="md" loading={loading}>LOGIN</Button>
         </form>
 
-        {/* 🔹 Styled "Don't have an account?" */}
+        
         <Group position="center" mt="sm">
           <Text size="sm" color="black">
             Don&apos;t have an account?{' '}
@@ -46,64 +46,6 @@ export default Login;
 
 
 
-
-
-
-
-
-
-
-// import React, { useContext } from 'react';
-// import { useMutation } from '@apollo/client/react';
-// import { TextInput, PasswordInput, Button, Paper, Anchor, Stack } from '@mantine/core';
-// import { useForm } from '@mantine/form';
-// import { showNotification } from '@mantine/notifications';
-// import { useNavigate } from 'react-router-dom';
-// import { LOGIN } from '../../graphql/mutation/authMutations';
-// import { AuthContext } from '../../context/AuthContext';
-
-
-// const Login = () => {
-//   const { setToken } = useContext(AuthContext);
-//   const [login, { loading }] = useMutation(LOGIN);
-//   const navigate = useNavigate();
-
-//   const form = useForm({
-//     initialValues: { email: '', password: '' },
-//     validate: {
-//       email: (value) => value ? null : 'Required',
-//       password: (value) => value ? null : 'Required',
-//     },
-//   });
-
-//   const handleSubmit = async (values) => {
-//     try {
-//       const { data } = await login({ variables: values });
-//       setToken(data.login);
-//       console.log(data.login)
-//       showNotification({ message: 'Login successful', color: 'green' });
-//       navigate('/dashboard');
-//     } catch (error) {
-//       showNotification({ title: 'Error', message: error.message, color: 'red' });
-//     }
-//   };
-
-//   return (
-//     <Paper shadow="md" p="xl" withBorder style={{ maxWidth: 400, margin: 'auto' }}>
-//       <Stack>
-//         <h2>SIGN IN</h2>
-//         <form onSubmit={form.onSubmit(handleSubmit)}>
-//           <TextInput label="Email" {...form.getInputProps('email')} />
-//           <PasswordInput label="Password" {...form.getInputProps('password')} mt="md" />
-//           <Button type="submit" fullWidth mt="md" loading={loading}>LOGIN</Button>
-//         </form>
-//         <Anchor href="/register" underline>Don't have an account? Sign up</Anchor>
-//       </Stack>
-//     </Paper>
-//   );
-// };
-
-// export default Login;
 
 
 
