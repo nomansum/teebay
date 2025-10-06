@@ -95,3 +95,5 @@ Migrations handle schema changes. Products can belong to multiple categories. Re
   - **Product Availability**: After buy, update product.availableForBuy = false in resolver; cache modified accordingly. For rent, check if availableForRent and no active rentals blocking.  
   - **Date Handling**: Use ISO strings for dates; validate client-side (e.g., no past starts).  
   - **Buy Then Rent Conflict**: If a user has bought a product (availableForBuy = false), any subsequent rent attempt should fail. Resolver checks product availability for rent; if product is already sold, throw error. Frontend displays a notification indicating the product cannot be rented because it was purchased.
+  - **Buy Rent Overlap** : While a product is rented and another user is trying to buy.
+  - **Rent Edit,Delete Overlap** : When a product is rented and owner is trying to edit,delete the product. 
