@@ -6,9 +6,9 @@ import { PrismaClient } from "@prisma/client";
 import typeDefs from "./graphql/typeDefs/typeDefs.js";
 import resolvers from "./graphql/resolvers/resolvers.js";
 import { getUserFromToken } from "./utils/auth.js";
-
+import dotenv from "dotenv";
  const prisma = new PrismaClient();
-
+dotenv.config();
 async function startServer() {
   const server = new ApolloServer({
     typeDefs,
@@ -20,7 +20,7 @@ async function startServer() {
       return  {prisma,user} ; 
     },
   });
-
+const PORT = process.env.PORT || 4000;
   await server.start();
 
   const app = express();
@@ -28,8 +28,8 @@ async function startServer() {
 
   server.applyMiddleware({ app });
 
-  app.listen(4000, () => {
-    console.log(`Server ready at http://localhost:4000${server.graphqlPath}`);
+  app.listen(PORT, () => {
+    console.log(`Server ready at http://localhost:${PORT}${server.graphqlPath}`);
   });
 }
 
