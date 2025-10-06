@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Button, Group, Stack, Paper, Title as MantineTitle, TextInput, Modal, Text } from '@mantine/core';
 import { useMutation, useQuery } from '@apollo/client/react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import { MY_PRODUCTS } from '../../graphql/query/product';
+import { MY_BORROWED_PRODUCTS, MY_LENT_PRODUCTS, MY_PRODUCTS } from '../../graphql/query/product';
 import { BUY_PRODUCT, RENT_PRODUCT } from '../../graphql/mutation/product';
 import { AuthContext } from '../../context/AuthContext';
 import { ErrorNotification } from '../../utils/errorNotification';
@@ -27,12 +27,15 @@ const ProductDetail = () => {
 
   const [buyProduct] = useMutation(BUY_PRODUCT, {
     context: { headers: { authorization: token } },
-    refetchQueries: [{ query: MY_PRODUCTS, context: { headers: { authorization: token } } }],
+    refetchQueries: [{ query: MY_PRODUCTS, context: { headers: { authorization: token } } },],
   });
 
   const [rentProduct] = useMutation(RENT_PRODUCT, {
     context: { headers: { authorization: token } },
-    refetchQueries: [{ query: MY_PRODUCTS, context: { headers: { authorization: token } } }],
+    refetchQueries: [{ query: MY_PRODUCTS, context: { headers: { authorization: token } } },{ query: MY_LENT_PRODUCTS, context: { headers: { authorization: token } } },
+
+      { query: MY_BORROWED_PRODUCTS, context: { headers: { authorization: token } } }
+    ],
   });
 
   useEffect(() => {
