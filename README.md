@@ -50,7 +50,7 @@ cd <repository-directory>
 
 ### 2. Build and start the containers
 ```bash
-sudo docker-compose up --build
+sudo docker compose up --build
 ```
 
 This will start the PostgreSQL database (port 5433), backend server (port 4000), and frontend (port 5173).
@@ -67,7 +67,7 @@ If ports 4000, 5173, or 5433 are occupied, edit the docker-compose.yml file to c
 
 
 ```bash
-sudo docker-compose down
+sudo docker compose down
 
 ```
 
