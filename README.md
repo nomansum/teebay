@@ -37,4 +37,40 @@ A Purchase involves a Seller (User), Buyer (User), and Product.
 A Rental involves a Renter (User) and Product (lender implied as Product owner).  
 Categories and PricingType are enums stored as arrays or single values in Products.
 
----    
+## How to Run the Project
+
+The project is containerized using Docker for easy setup. Ensure Docker is installed on your machine.
+
+### 1. Clone the repository
+
+```bash
+git clone <repository-url>
+cd <repository-directory>
+```
+
+### 2. Build and start the containers
+```bash
+sudo docker-compose up --build
+```
+
+This will start the PostgreSQL database (port 5433), backend server (port 4000), and frontend (port 5173).
+If ports 4000, 5173, or 5433 are occupied, edit the docker-compose.yml file to change the exposed ports and restart.
+
+
+### 3. Access The Application 
+
+- Frontend : [http://localhost:5173](http://localhost:5173)
+- Backend : [http://localhost:4000/graphql](http://localhost:4000/graphql)
+
+
+### 4. Stop The Containers
+
+
+```bash
+sudo docker-compose down
+
+```
+
+Note: Prisma migrations are applied automatically on startup. The database is seeded with initial data if needed (check backend setup for details).
+
+
