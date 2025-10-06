@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/client/react';
 import { useNavigate } from 'react-router-dom';
 import { ADD_PRODUCT } from '../../graphql/mutation/product';
 import { AuthContext } from '../../context/AuthContext';
-import { MY_PRODUCTS } from '../../graphql/query/product';
+import { ALL_PRODUCTS, MY_PRODUCTS } from '../../graphql/query/product';
 import { ErrorNotification } from '../../utils/errorNotification';
 import { SuccessNotification } from '../../utils/successNotification';
 import Messages from '../../constants/messages';
@@ -28,7 +28,7 @@ const AddProduct = () => {
         authorization: token,
       },
     },
-    refetchQueries: [ { query: MY_PRODUCTS, context: { headers: { authorization: token } } },],
+    refetchQueries: [ { query: MY_PRODUCTS, context: { headers: { authorization: token } } },{ query: ALL_PRODUCTS, context: { headers: { authorization: token } } }],
   });
 
 
