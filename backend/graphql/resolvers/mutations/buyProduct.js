@@ -29,7 +29,7 @@ export const buyProductAsUser =  async (_,{id},{prisma,user})=>{
 
       await prisma.product.update({
         where: { id },
-        data: { ownerId: user.id, availableForBuy: false, availableForRent: false }, 
+        data: { ownerId: user.id }, 
       });
       
       return purchase;
