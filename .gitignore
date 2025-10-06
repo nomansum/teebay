@@ -7,8 +7,7 @@ client/my-app/dist/
 client/my-app/build/
 
 # Ignore environment files
-client/my-app/.env
-backend/.env
+
 
 # Optional: logs
 *.log
