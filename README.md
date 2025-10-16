@@ -44,8 +44,8 @@ The project is containerized using Docker for easy setup. Ensure Docker is insta
 ### 1. Clone the repository
 
 ```bash
-git clone <repository-url>
-cd <repository-directory>
+git clone https://github.com/nomansum/teebay.git
+cd teebay
 ```
 
 ### 2. Build and start the containers
